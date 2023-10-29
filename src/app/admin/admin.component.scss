@@ -1,0 +1,10 @@
+@import 'src/variables.scss';
+
+.admin-module-wrapper {
+    aside {
+        background-color: $color-grey;
+    }
+    .page-details-wrapper {
+        padding: 25px;
+    }
+}

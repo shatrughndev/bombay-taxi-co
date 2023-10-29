@@ -1,0 +1,32 @@
+@import 'src/variables.scss';
+header {
+    padding: 20px 0;
+    background-color: $color-grey;
+    h1 {
+        margin: 0;
+        a {
+            color: $color-yellow;
+            text-decoration: none;
+        }
+    }
+}
+nav.menu {
+    ul {
+        padding: 0;
+        margin: 0;
+        li {
+            padding: 0 16px;
+            border-right: 1px solid $color-white;
+            display: inline-block;
+            list-style-type: none;
+            &:last-child { border-right: none }
+            a {
+                color: $color-white;
+                text-decoration: none;
+                &:hover {
+                    color: $color-yellow;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div class="wrapper city-wrapper">
+    <div class="row align-items-center">
+        <div class="col-10">
+            <mat-form-field class="example-chip-list w-100" appearance="fill">
+                <mat-label>Add City</mat-label>
+                <mat-chip-list #chipList aria-label="City selection">
+                  <mat-chip *ngFor="let city of cities" (removed)="remove(city)">
+                  {{city.value}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input placeholder="Add City..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="true"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>                
+        </div>
+        <div class="col-2">
+            <div class="button-wrapper">
+                <button mat-raised-button color="primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

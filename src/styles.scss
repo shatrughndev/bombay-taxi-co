@@ -1,0 +1,203 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$yellow-palette: (
+  50 : #fff6e3,
+    100 : #feeab8,
+    200 : #fedc89,
+    300 : #fecd5a,
+    400 : #fdc336,
+    500 : #fdb813,
+    600 : #fdb111,
+    700 : #fca80e,
+    800 : #fca00b,
+    900 : #fc9106,
+    A100 : #ffffff,
+    A200 : #fff8f0,
+    A400 : #ffdfbd,
+    A700 : #ffd3a3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$taxi-frontend-primary: mat.define-palette($yellow-palette);
+$taxi-frontend-accent: mat.define-palette($yellow-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$taxi-frontend-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$taxi-frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $taxi-frontend-primary,
+    accent: $taxi-frontend-accent,
+    warn: $taxi-frontend-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($taxi-frontend-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Figtree;
+  src: url('./assets/Figtree/static/Figtree-Regular.ttf');
+}
+
+// * {
+//   font-family: Figtree, "Helvetica Neue", sans-serif !important;
+// }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Figtree, "Helvetica Neue", sans-serif; }
+
+.squer-box {
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  background: #313131;
+  margin-right: 6px;
+}
+
+// Navbar Logo Styles
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+
+  img {
+      max-height: 100%;
+      width: auto;
+  }
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  transition: 0.5s;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  span {
+      padding-top: 2px;
+  }
+
+  * {
+      transition: 0.5s;
+  }
+
+  &:hover {
+      color: #ffb300;
+
+      span {
+          color: #ffb300;
+      }
+
+      .squer-box {
+          background-color: #ffb300;
+      }
+  }
+}
+
+.home-section-1 {
+  background-size: cover;
+  background-position: center;
+  height: calc(100vh - 54px);
+
+  .title {
+      font-size: 25px;
+      color: #fff;
+      font-weight: 500;
+      padding: 32px;
+      text-align: center;
+      text-shadow: 2px 2px black;
+  }
+
+  .btn-primary {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .floating-tab-link {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      text-align: center;
+
+      &.active {
+          color: #ffb300;
+      }
+  }
+
+  .top-float-card {
+      position: absolute;
+      width: 100%;
+      top: -26px;
+  }
+
+  .main-card {
+      height: 12rem;
+  }
+
+  .mat-form-field-infix {
+      display: flex !important;
+  }
+}
+
+
+.form-control:active, .form-control:focus{
+  box-shadow: none;
+  outline: 0 !important;
+}
+
+
+.btn-primary {
+  --bs-btn-color: #222;
+  --bs-btn-bg: #ffb300;
+  --bs-btn-border-color: #ffb300;
+  --bs-btn-hover-color: #222;
+  --bs-btn-hover-bg: #ffb300;
+  --bs-btn-hover-border-color: #ffb300;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #222;
+  --bs-btn-active-bg: #ffb300;
+  --bs-btn-active-border-color: #ffb300;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #222;
+  --bs-btn-disabled-bg: #ffb300;
+  --bs-btn-disabled-border-color: #ffb300;
+  font-weight: 500;
+}

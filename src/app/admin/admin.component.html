@@ -1,0 +1,18 @@
+<div class="admin-module-wrapper">
+    <div class="container-fluid gx-0">
+        <div class="row gx-0">
+            <div class="col-2">
+                <aside>
+                    <app-side-menu (viewAdminPagesroute)="sidemenuRoute($event)"></app-side-menu>
+                </aside>
+            </div>
+            <div class="col-10">
+                <div class="page-details-wrapper">
+                    <app-bookings *ngIf="activeAdminRoute == 'bookings' "></app-bookings>
+                    <app-admin-routes *ngIf="activeAdminRoute == 'routes' "></app-admin-routes>
+                    <app-cities *ngIf="activeAdminRoute == 'cities'"></app-cities>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

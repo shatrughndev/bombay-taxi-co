@@ -1,0 +1,15 @@
+@import 'src/variables.scss';
+
+.faqs-wrapper {
+    .heading {
+        margin: 40px 0;
+        font-size: 36px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .panel-heading {
+        color: $color-yellow;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}

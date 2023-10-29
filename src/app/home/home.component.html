@@ -1,0 +1,372 @@
+<div class="banner-wrapper">
+  <div class="container">
+    <h3 class="text-center">Enjoy Your Comfortable Ride In Affordable Price</h3>
+    <div class="form-wrapper">
+      <form [formGroup]="searchForm">
+        <div class="row justify-content-center trip-type">
+          <ul class="row col-9">
+            <li class="col-4" *ngFor="let item of tripList;"
+              [ngClass]="{  'active' : searchForm.get('tripType')?.value == item.value}"
+              (click)="selectedTripType(item)">{{item.name}}</li>
+          </ul>
+        </div>
+        <div class="row g-0">
+          <div class="col-3">
+            <div class="form-control first-input select">
+              <mat-form-field class="w-100">
+                <mat-label>From</mat-label>
+                <mat-select formControlName="fromDest">
+                  <input type="text" class="select-search-input" matInput placeholder="From"
+                    (input)="searchPlace($event)">
+                  <mat-option *ngFor="let item of destinationList" [value]="item.value">
+                    {{item.name}}
+                  </mat-option>
+                  <mat-option *ngIf="destinationList.length == 0">No Records Found !!</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-control select">
+              <mat-form-field class="w-100">
+                <mat-label>To</mat-label>
+                <mat-select formControlName="toDest">
+                  <input type="text" class="select-search-input" matInput placeholder="To"
+                    (input)="searchPlace($event)">
+                  <mat-option *ngFor="let item of destinationList" [value]="item.value">
+                    {{item.name}}
+                  </mat-option>
+                  <mat-option *ngIf="destinationList.length == 0">No Records Found !!</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-control">
+              <mat-form-field class="w-100">
+                <mat-label>Pickup Date</mat-label>
+                <input type="text" [min]="minPickDate" [max]="maxPickDate" matInput [matDatepicker]="picker"
+                  formControlName="pickupDate">
+                <mat-datepicker-toggle [for]="picker" matSuffix>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-control">
+              <mat-form-field class="w-100">
+                <mat-label>Return Date</mat-label>
+                <input matInput [matDatepicker]="pickerReturnDate" formControlName="returnDate">
+                <mat-datepicker-toggle matSuffix [for]="pickerReturnDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerReturnDate></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-control last-input">
+              <mat-form-field class="w-100">
+                <mat-label>Pickup Time</mat-label>
+                <input type="text" matInput formControlName="pickupTime" [ngxTimepicker]="pickerTime">
+                <ngx-material-timepicker #pickerTime></ngx-material-timepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="search">
+          <button mat-raised-button color="primary" (click)="search();">Let's Ride</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- search detail section -->
+<section class="search-detail-section" *ngIf="showCarList">
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="detail-search-wrapper"></div>
+      <div class="row">
+        <div class="col-4">
+          <aside class="fare-details-info">
+            <ul>
+              <span class="fare-title">Fare Details</span>
+              <li><span>Base Fare</span><span>Included</span></li>
+              <li><span>GST(5% on Base Fare)</span><span>Not Included</span></li>
+              <li><span>State Toll Tax</span><span>Included</span></li>
+              <li><span>Included KMs</span><span>148KM</span></li>
+              <li><span>Vechicles & Fuel Charges</span><span>Included</span></li>
+              <li><span>One Pickup & Drop</span><span>Included</span></li>
+            </ul>
+            <ul>
+              <span class="fare-title">Other Charges</span>
+              <li><span>Parking & Airport Entry</span><span>If Applicable</span></li>
+              <li><span>Waiting Charges</span><span>₹2/Min</span></li>
+              <li><span>Night Charges</span><span>₹250/Day</span></li>
+              <li><span>Extra Pickup/Drop</span><span>₹99</span></li>
+            </ul>
+            <ul>
+              <span class="fare-title">Extra Kms Charges</span>
+              <li><span>Economy</span><span>₹15/KM</span></li>
+              <li><span>Comfort</span><span>₹15/KM</span></li>
+              <li><span>Premium</span><span>₹15/KM</span></li>
+            </ul>
+          </aside>
+        </div>
+        <div class="col-8">
+          <div class="cab-list-wrapper" *ngFor="let list of cabList;">
+            <div class="row">
+              <div class="col-2">
+                <div class="vehcile-type">
+                  <img src="{{list.img}}" alt="" class="img-fluid">
+                </div>
+              </div>
+              <div class="col-7">
+                <h4 class="cab-title">{{list.name}}</h4>
+                <span class="car-type">Indica/Wagonr Or Similar</span>
+                <div class="car-features-type">
+                  <span>Car Features</span>
+                  <ul>
+                    <li>
+                      <span>AC</span>
+                    </li>
+                    <li>
+                      <span>Bags</span>
+                    </li>
+                    <li>
+                      <span>4 Seaters</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="price-info-wrapper text-end">
+                  <span class="d-block offer">13% OFF</span>
+                  <h4 class="discounted-price"><span>₹ </span>{{list.price}}</h4>
+                  <span class="d-block">Inclusive Of Toll & Sate Tax</span>
+                  <button mat-raised-button color="primary">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- search detail section end -->
+
+<!-- Why Choose Us Section Start -->
+<section class="section--why-choose-us pt-5">
+  <div class="container">
+    <h1 class="title text-center mb-4">Why Choose Us?</h1>
+
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-sm-3 text-center">
+        <div class="img-box">
+          <img src="assets/images/icons/d.png" class="img-fluid" alt=" ">
+        </div>
+        <h2 class="heading">Professional Drivers</h2>
+        <p class="paragraph">
+          Experience Staff & Professionally trained Chauffeurs
+        </p>
+      </div>
+      <div class="col-sm-3 text-center">
+        <div class="img-box">
+          <img src="assets/images/icons/d.png" class="img-fluid" alt=" ">
+        </div>
+        <h2 class="heading">Quality Cars</h2>
+        <p class="paragraph">
+          Experience Staff & Professionally trained Chauffeurs
+        </p>
+      </div>
+
+      <div class="col-sm-3 text-center">
+        <div class="img-box">
+          <img src="assets/images/icons/d.png" class="img-fluid" alt=" ">
+        </div>
+        <h2 class="heading">Affordable Pricing</h2>
+        <p class="paragraph">
+          We offer you the right vehicle at the best price
+        </p>
+      </div>
+
+      <div class="col-sm-3 text-center">
+        <div class="img-box">
+          <img src="assets/images/icons/d.png" class="img-fluid" alt=" ">
+        </div>
+        <h2 class="heading">Largest Fleet</h2>
+        <p class="paragraph">
+          We offer an extensive fleet of Hatchbacks, Sedans, MUV's and Coach Buses.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- popular packages section -->
+<section class="section--popular-packages bg-light py-4">
+  <div class="container">
+    <h1 class="title text-center mb-4">Popular Packages</h1>
+    <div class="container row">
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="assets/images/packages/mum.jpg" alt="Manali">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Mumbai to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>class="card h-100"
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="assets/images/packages/pune.jpg" alt="Leh Ladakh">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Pune to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="assets/images/packages/nashik.jpg" alt=" ">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Nashik to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="https://www.holidify.com/images/tooltipImages/MANALI.jpg" alt=" ">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Delhi to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="https://www.holidify.com/images/tooltipImages/LADAKH.jpg" alt="Leh Ladakh">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Satara to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 mb-3">
+
+        <div class="card h-100">
+          <img class="card-img-top" src="assets/images/packages/taj.jpg" alt="Leh Ladakh">
+          <div class="card-body">
+            <h5 class="card-title">Cabs From Agra to</h5>
+            <p class="card-text"><span class="city">New Delhi</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gurgaon</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Noida</span> <span class="distance">552Km ( 6hr 53min )</span></p>
+            <p class="card-text"><span class="city">Faridabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+            <p class="card-text"><span class="city">Gaziabad</span> <span class="distance">552Km ( 6hr 53min )</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- popular packages section end -->
+
+<section class="bg-accent py-5">
+  <div class="container px-2 mx-auto flex justify-center pb-8">
+    <h4 class="text-primary text-center text-sm font-medium my-3 mt-16">Call 24 Hour Service Available</h4>
+    <h3 class="text-primary text-center text-4xl font-bold capitalize my-4 mb-8">
+      Call Now &amp; Book Your Taxi For Your Next Ride
+    </h3>
+    <a href="tel:+91-6262-744-744"
+      class="text-primary text-decoration-none block text-center text-2xl font-bold capitalize   hover-desktop:hover:underline">
+      <span class="inline-block align-middle me-2">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" color="#2A2A2A"
+          style="color:#2A2A2A" height="2rem" width="2rem" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zm-16.39 307.37l-15 65A15 15 0 0 1 354 416C194 416 64 286.29 64 126a15.7 15.7 0 0 1 11.63-14.61l65-15A18.23 18.23 0 0 1 144 96a16.27 16.27 0 0 1 13.79 9.09l30 70A17.9 17.9 0 0 1 189 181a17 17 0 0 1-5.5 11.61l-37.89 31a231.91 231.91 0 0 0 110.78 110.78l31-37.89A17 17 0 0 1 299 291a17.85 17.85 0 0 1 5.91 1.21l70 30A16.25 16.25 0 0 1 384 336a17.41 17.41 0 0 1-.39 3.37z">
+          </path>
+        </svg>
+      </span>
+      <span>+91-6262-744-744</span>
+    </a>
+  </div>
+</section>
+
+
+<footer class="" style="background-color: #2a2a2a;">
+  <div class="container d-flex grid md:grid-cols-3 justify-content-between py-4">
+    <span class="text-secondary text-white text-center md:text-left block font-light text-sm md:col-span-2">
+      Copyright © Taxi Company @ 2022. All rights reserved.
+    </span>
+    <div class="flex justify-center md:justify-end">
+      <a href="javascript:void(0)"
+        class="inline-block text-white me-3 text-sm align-middle font-light text-secondary underline">
+        Privacy Policy
+      </a>
+      <a href="javascript:void(0)"
+        class="inline-block text-white text-sm align-middle font-light text-secondary underline">
+        Terms &amp; Conditions
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,378 @@
+@import 'src/variables.scss';
+// CAB List CSS end@import 'src/variables.scss';
+
+.banner-wrapper {
+    min-height: calc(100vh - 52px);
+    background: url('../../assets/bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    margin-top: 52px;
+
+    &:before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .4);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    h3 {
+        padding: 4rem 0 0.5rem;
+        color: $color-white;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .form-control {
+        border-radius: 0;
+        padding: 30px 12px 18px 12px;
+
+        &.select {
+            padding: 32px 12px 21px 12px;
+        }
+
+        mat-label {
+            text-transform: uppercase;
+        }
+
+        &.first-input {
+            border-radius: 6px 0 0 6px;
+        }
+
+        &.last-input {
+            border-radius: 0 6px 6px 0;
+        }
+
+        label {
+            font-weight: 700;
+        }
+
+        input {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .mat-form-field-type-mat-select {
+            ::ng-deep .mat-select-value-text {
+                font-weight: 700;
+                font-size: 24px;
+            }
+        }
+    }
+
+    .trip-type {
+        >ul {
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 7px 0 rgba(0, 0, 0, .4);
+            background-color: $color-white;
+            position: relative;
+            top: 10px;
+            margin: 0;
+
+            li {
+                list-style-type: none;
+                text-align: center;
+                cursor: pointer;
+
+                &.active {
+                    color: $color-yellow;
+                }
+
+                &:hover {
+                    color: $color-yellow;
+                }
+
+                &:nth-child(2n) {
+                    border-left: 1px solid $color-grey;
+                    border-right: 1px solid $color-grey;
+                }
+            }
+        }
+    }
+
+    .search {
+        display: inline-block;
+        position: relative;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        button {
+            padding: 2px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.select-search-input {
+    width: calc(100% - 24px) !important;
+    padding: 8px 12px !important;
+}
+
+// CAB List CSS
+.search-detail-section {
+    padding: 25px 0;
+}
+
+.fare-details-info {
+    ul {
+        padding: 0 0 10px;
+        margin: 0 0 10px;
+        border-bottom: 1px solid lighten($color-grey, 50%);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .fare-title {
+            font-size: 18px;
+        }
+
+        li {
+            margin: 5px 0;
+            list-style-type: none;
+            overflow: auto;
+
+            >span {
+                &:first-child {
+                    float: left;
+                }
+
+                &:last-child {
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+
+.cab-list-wrapper {
+    padding: 12px;
+    border: 1px solid #bababa;
+    box-shadow: 0 4px 8px 0 rgba(138, 107, 118, .08);
+    border-radius: 8px;
+    margin: 0 0 20px;
+}
+
+.cab-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.car-type {
+    margin: 5px 0;
+    display: inline-block;
+    color: #bababa;
+}
+
+.car-features-type {
+    >span {
+        font-weight: 500;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: lighten($color-grey, 20%);
+    }
+
+    >ul {
+        padding: 0;
+        margin: 5px 0 0;
+
+        li {
+            width: 50%;
+            display: inline-block;
+            list-style-type: none;
+            color: $color-grey;
+        }
+    }
+}
+
+.price-info-wrapper {
+    .offer {
+        color: $color-yellow;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .discounted-price {
+        margin: 3px 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    button {
+        margin: 5px 0 0;
+        font-weight: 700;
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}
+
+// CAB List CSS end
+
+.nearby-item img {
+    height: 120px;
+    width: 75%;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.nearby-item img {
+    height: 120px;
+    width: 75%;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.nearby-item img {
+    height: 120px;
+    width: 75%;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+img {
+    object-fit: cover;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.text-primary {
+    --tw-text-opacity: 1;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-primary {
+    --bs-text-opacity: 1;
+    color: #2a2a2a !important;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+
+.text-primary {
+    --tw-text-opacity: 1;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.block {
+    display: block;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.bg-accent {
+    --tw-bg-opacity: 1;
+    background-color: rgb(253 184 19/var(--tw-bg-opacity));
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* This is to vertically center the container on the page */
+}
+
+.section--popular-packages {
+    .card-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .card-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .city {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .distance {
+            color: #727272;
+        }
+    }
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.heading {
+    font-size: 18px;
+    margin: 0;
+}
+
+.img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85px;
+    width: 85px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    margin: 0 auto;
+
+    img {
+        max-height: 100%;
+        width: auto;
+    }
+}
+
+p.paragraph {
+    font-size: 14px;
+    padding: 0 27px;
+}

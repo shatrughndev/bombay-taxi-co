@@ -1,0 +1,26 @@
+<div class="booking-wrapper">
+    <div class="container">
+        <div class="heading-panel">
+            <div class="clearfix">
+                <div class="float-start">
+                    <h3>Booking</h3>
+                </div>
+                <div class="float-end">
+                    <button mat-raised-button color="primary">
+                        Add New</button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                  <mat-table #table [dataSource]="dataSource">
+                    <ng-container [matColumnDef]="col.columnDef" *ngFor="let col of displayedColumns">
+                      <mat-header-cell *matHeaderCellDef> {{ col.columnDef }} </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ element[col.columnDef] }} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="columnsHeading"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: columnsHeading;"></mat-row>
+                  </mat-table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+            </div>
+        </div>
+    </div>
+</div>

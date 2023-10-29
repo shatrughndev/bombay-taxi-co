@@ -1,0 +1,9 @@
+<div class="side-menu-wrapper">
+    <ul>
+        <li *ngFor="let item of sideMenu">
+            <a (click)="viewAdminPages(item)" [ngClass]="{'active': activeLink == item.routeTo}">
+                {{item.label}}
+            </a>
+        </li>
+    </ul>
+</div>
