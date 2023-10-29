@@ -1,0 +1,28 @@
+<aside class="sidebar" #sidebar>
+  <ul class="sidebar-menu pt-2 pb-3">
+    <!-- Dashboard -->
+    <li class="sidebar-menu-item">
+      <a class="side-link" routerLink="/admin/dashboard" routerLinkActive="active">
+        <i class="fas fa-home fa-fw me-2 "></i><span class="menu-text">Dashboard</span>
+      </a>
+    </li>
+
+    <!--  Menu Start -->
+    <li class="sidebar-menu-item treeview" routerLinkActive="active">
+
+      <a href="javascript:void(0)" class="side-link" data-bs-toggle="collapse" data-bs-target="#menu-1">
+        <i class="fas fa-list fa-fw me-2 "></i><span class="menu-text ">Parent</span>
+        <i *ngIf="!isCatalogueExpanded" class="fas fa-solid fa-plus ms-auto"></i>
+        <i *ngIf="isCatalogueExpanded" class="fas fa-solid fa-minus ms-auto"></i>
+      </a>
+
+      <ul class="collapse treeview-menu" id="catalogue" routerLinkActive="show">
+        <li class="sidebar-menu-item">
+          <a class="side-link" routerLinkActive="active" routerLink="/admin/menu-1">
+            <i class="fa fa-circle-notch fs-xs me-2"></i><span class="menu-text">Menu item 1</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside>

@@ -1,0 +1,14 @@
+.footer {
+  margin-left: 250px;
+  padding: 8px 15px;
+  transition: 0.5s;
+  &.active{
+    margin-left: 62px !important;
+  }
+}
+
+.heading-link-sm {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  // color: #3b00f9 !important;
+}

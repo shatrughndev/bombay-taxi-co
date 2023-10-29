@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <app-header *ngIf="isHeaderFooterDisabled === 'Y'"></app-header>
+  <main class="main-content">
+    <section class="main-title" *ngIf="isHeaderFooterDisabled === 'Y'">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <div class="d-flex align-items-center">
+              <a href="javascript:void(0);" onclick="history.go(-1)" class="back-btn">
+                <i class="fa-arrow-circle-left fas me-2"></i>
+              </a>
+              <h1 class="title text-uppercase">
+                <span>{{mainTitle}}</span>
+              </h1>
+            </div>
+          </div>
+          <div class="col-sm-auto">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a routerLink="/admin/dashboard">
+                  <i class="fas fa-home me-2"></i>
+                  Dashboard
+                </a>
+              </li>
+              <li class="breadcrumb-item active">{{mainTitle}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <app-footer *ngIf="isHeaderFooterDisabled === 'Y'"></app-footer>
+</div>

@@ -1,0 +1,54 @@
+<section class="login vh-100">
+  <div class="row h-100">
+    <div class="col-sm-6 d-flex justify-content-center align-items-center" style="background-color: #c7c7c7;">
+      <div class="d-flex justify-content-center">
+        <img src="./assets/login.svg" alt="login_image" class="login_logo">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row g-0 align-items-center justify-content-center h-100">
+        <div class="col-sm-6 col-lg-5 col-xl-4">
+          <div class="card-body ">
+            <p class="h5 mb-0">Sign in to Taxi Booking Co - Admin Panel</p>
+            <hr class="border border-secondary">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <div class="input-group has-validation mb-3">
+                  <input type="text" name="email" formControlName="email" class="form-control rounded " [class]="{ 'is-invalid': submitted && f['email'].errors }"/>
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">email is required</div>
+                  </div>
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].hasError('email') && f['email'].touched">Invalid email format.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <div class="input-group has-validation mb-3">
+                  <input type="{{inputType}}" name="password" formControlName="password" class="form-control rounded-top-right-0 rounded-bottom-right-0" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" style="border-right: none;"/>
+                  <span class="input-group-text rounded-top-left-0 rounded-bottom-left-0" (click)="toggleShow()">
+                    <i style="font-size: 14px; color: #F11A7B;" class="fa fa-eye" *ngIf="showPassword"></i>
+                    <i style="font-size: 14px;" class="fa fa-eye-slash" *ngIf="!showPassword"></i>
+                  </span>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-auto ">
+                  <button type="submit" style="background-color: #ff6f4f;" class="btn text-white text-uppercase login-button"><i *ngIf="loading" class="fas fa-circle-notch fa-spin me-1 " style="color: white; font-size: 14px;"></i>login</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

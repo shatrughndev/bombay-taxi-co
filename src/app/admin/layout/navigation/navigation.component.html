@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-first navbar-white bg-white py-0 px-2 fixed-top border-bottom">
+  <div class="container-fluid">
+    <a *ngIf="logo" class="logo brand-heading text-primary" routerLink="/admin">
+      <img [src]="logo" alt="Beam Commerce">
+    </a>
+    <a *ngIf="!logo" class="logo brand-heading text-primary" routerLink="/admin">Taxi Booking Co</a>
+    <button type="button" (click)="toggleSidebar();" class="sidebar-menu-btn">
+      <i class="fas fa-align-left px-1"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+      <div class="search d-flex mx-auto position-relative">
+        <!-- <div class="input-group">
+          <input class="form-control" #onTypedInSearchInput type="search" placeholder="Search Everything">
+          <button class="btn" type="submit">
+            <i class="fa fa-search text-primary border-start pl-3 pr-2"></i>
+          </button>
+        </div> -->
+        <div class="search-result-box shadow-sm" *ngIf="searchResult.length > 0" id="search-result-box">
+          <!-- <button type="button" class="btn-text btn-search-box-close" (click)="searchResult = []; onTypedInSearchInput.value = ''">&times;</button> -->
+          <div *ngFor="let data of searchResult" class="mb-2">
+            <h6 class="m-0 text-capitalize">{{data.search_heading}}</h6>
+            <ng-container *ngIf="data.type === 'admin'">
+              <a *ngFor="let item of data.result" routerLink="/admin/{{data.slug}}" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">{{item.firstname + ' ' + item.lastname}}</a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'customers'">
+              <a *ngFor="let item of data.result" routerLink="/admin/{{data.slug}}/edit/{{item.id}}" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">{{item.firstname + ' ' + item.lastname}}</a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'banners'">
+              <a *ngFor="let item of data.result" [routerLink]="'/admin/' + data.slug + '/collection/' + item.banner_collection_id + '/edit/' + item.banner_id" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.name}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'orders'">
+              <a *ngFor="let item of data.result" [routerLink]="['/admin/orders/details', item.id]" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.firstname}} {{item.lastname}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'products'">
+              <a *ngFor="let item of data.result" [routerLink]="['/admin/products/edit', item.id]" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.name}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'categories'">
+              <a *ngFor="let item of data.result" [routerLink]="['/admin/categories/edit', item.id]" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.name}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'customer groups'">
+              <a *ngFor="let item of data.result" [routerLink]="['/admin/customers/groups/edit', item.id]" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.name}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="data.type === 'attributes'">
+              <a *ngFor="let item of data.result" [routerLink]="['/admin/attributes/edit', item.id]" (click)="searchResult = []" class="heading-link-sm py-2 border-bottom d-block">
+                {{item.admin_name}}
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown mr-4">
+
+          <a href="#" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+            <div class="user-pic-box">
+              <img src="assets/profile-pic.jpg" class="img-fluid mr-3" alt="User Pic" #profilePic>
+            </div>
+            <span class="profile-name text-capitalize ps-2">{{userDetails?.firstname}} {{userDetails?.lastname}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-0">
+            <li>
+              <a class="dropdown-item" routerLink="/admin/dashboard">
+                Dashboard
+                <i class="fa fa-home"></i>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item">
+                Settings
+                <i class="fa fa-cog"></i>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item">
+                Profile <i class="fa fa-address-book"></i>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider my-2">
+            </li>
+            <li>
+              <button class="dropdown-item btn btn-link" (click)="logout()">
+                Logout
+                <i class="fa fa-power-off"></i>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
